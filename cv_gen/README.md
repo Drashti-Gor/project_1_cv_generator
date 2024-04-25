@@ -1,1 +1,0 @@
-I have developed a CV Generator that allows users to input their details, which then generates a professional resume in PDF format. Additionally, it leverages OpenAI to automatically generate a concise summary based on the provided skills and experience.
