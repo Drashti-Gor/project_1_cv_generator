@@ -1,0 +1,92 @@
+{% extends 'pdf/base.html' %}
+{% block body %}
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <h4>Enter your details:</h4>
+            <br></br>
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <l`abel for="name" class="form-label">Full Name:</label>
+                      <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="degree" class="form-label">Degree:</label>
+                        <input type="text" class="form-control" id="degree" name="degree">
+                    </div>
+                    <div class="mb-3">
+                        <label for="university" class="form-label">University:</label>
+                        <input type="text" class="form-control" id="university" name="university">
+                    </div>
+                    <div class="mb-3">
+                        <label for="school" class="form-label">School:</label>
+                        <input type="text" class="form-control" id="school" name="school">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total_experience" class="form-label">Total Experience in Years:</label>
+                        <input type="number" class="form-control" id="total_experience" name="total_experience">
+                    </div>
+                    <div class="mb-3">
+                        <label for="experience" class="form-label">Experience:</label>
+                        <textarea type="text" class="form-control" id="experience" name="experience"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Techinical Skills:</label>
+                        <textarea type="text" class="form-control" id="skills" name="skills"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="soft_skills" class="form-label">Soft Skills:</label>
+                        <textarea type="text" class="form-control" id="soft_skills" name="soft_skills"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="summary" class="form-label">Summary:</label>
+                        <button type="button" id="generate_ai" onclick="generateAI()">Generate with AI?</button>
+                        <textarea rows="5" type="text" class="form-control" id="summary" name="summary"></textarea>
+                    </div> 
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function generateAI(){
+            var years = document.getElementById('total_experience').value;
+            var tech_skills = document.getElementById('skills').value;
+            var soft_skills = document.getElementById('soft_skills').value;
+            var array1 = tech_skills.split(',');
+            var array2 = soft_skills.split(',');
+            var mergedArray = array1.concat(array2);
+            fetch(`/gen_summary/${mergedArray.join(',')}/${years}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'X-CSRFToken': getCookie('csrftoken')  
+                    }
+                })                
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        console.error('Cannot generate summary');
+                    }
+                })
+                .then(response => {
+                    document.getElementById('summary').value = response.slice(13,-2)
+                }
+                )
+                .catch(error => console.error('Error:', error));  
+        }
+    </script>
+    
+{% endblock %}

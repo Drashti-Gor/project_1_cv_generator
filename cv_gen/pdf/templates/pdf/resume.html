@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user_profile.name}}</title>
+</head>
+<body>
+    <div class="container" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>{{user_profile.name}}</h1>
+                <h3>{{user_profile.email}}</h3>
+                <h3>{{user_profile.phone}}</h3>
+                <hr>
+                <br>
+                <h2>Summary</h2 >
+                <p style="font-size: 20px;">{{user_profile.summary}}</p>
+                <hr>
+                <br>
+                <h2>Experience</h2>
+                <p style="font-size: 20px;">Total Experience in Years: {{user_profile.total_experience}}</p>
+                <p style="font-size: 20px;">{{user_profile.experience}}</p>
+                <hr>
+                <br>
+                <h2>Skills</h2>
+                <p style="font-size: 20px;">Techinical Skills: {{user_profile.skills}}</p>
+                <p style="font-size: 20px;">Soft Skills: {{user_profile.soft_skills}}</p>
+                <hr>
+                <br>
+                <h2>Education</h2>
+                <p style="font-size: 20px;"><b>Degree:</b> {{user_profile.degree}}</p>
+                <p style="font-size: 20px;"><b>University:</b> {{user_profile.university}}</p>
+                <p style="font-size: 20px;"><b>School:</b> {{user_profile.school}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'pdf/base.html' %}
+
+{% block body %}
+
+<header>
+    <h1>CV Generator</h1>
+</header>
+<div class="container">
+    <div class="content">
+        <h2>Welcome {{user.username}}!</h2>
+        <p id="about" >Create your professional CV in minutes</p>
+        <a href="accept/" class="button">Create CV</a>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2024 CV Generator</p>
+</footer>
+{% endblock %}
